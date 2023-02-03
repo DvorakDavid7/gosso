@@ -1,2 +1,2 @@
 # gosso
-sso implementation in golang
+sso implementation in java
