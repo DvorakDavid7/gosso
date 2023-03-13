@@ -17,12 +17,17 @@ public class SecurityConfig {
 
     @Bean
     public RelyingPartyRegistrationRepository relyingPartyRegistrations() {
-        RelyingPartyRegistration registration = RelyingPartyRegistrations
+        RelyingPartyRegistration azureRegistration = RelyingPartyRegistrations
+                .fromMetadataLocation("https://login.microsoftonline.com/67b7de17-01a8-410a-a645-3eacd61c1111/federationmetadata/2007-06/federationmetadata.xml?appid=732b721a-d7c7-4647-9f0d-84f8cc2b205f")
+                .registrationId("azure")
+                .build();
+
+        RelyingPartyRegistration oktaRegistration = RelyingPartyRegistrations
                 .fromMetadataLocation("https://dev-90054128.okta.com/app/exk87n1a4mz9OyrFP5d7/sso/saml/metadata")
                 .registrationId("okta")
                 .build();
 
-        return new InMemoryRelyingPartyRegistrationRepository(registration);
+        return new InMemoryRelyingPartyRegistrationRepository(oktaRegistration);
     }
 
 
